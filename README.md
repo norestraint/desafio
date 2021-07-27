@@ -1,10 +1,35 @@
-# desafio
+# Onboarding Nubank: Desafio da Alura
 
-A Clojure library designed to ... well, that part is up to you.
+Para preparar os #nuvinhos para as equipes o Nubank fez uma parceria com a [Alura](https://cursos.alura.com.br/), que criou um [plano de estudos](https://cursos.alura.com.br/learning-guide/company) personalizado de acordo com as tecnologias utilizadas pelos times.
 
-## Usage
+O plano de estudos é dividido em quatro semanas e em cada uma delas será proposto também um desafio que testa os conceitos passados nos cursos. Esses desafios semanais serão feitos em dupla e armazenados nesse repositório.
 
-FIXME
+## Semana 1
+
+Na primeira semana do desafio de Onboarding da Alura temos como objetivo criar um código em Clojure que simula o cartão de crédito de um cliente Nubank. O código precisa ser capaz de:
+
+* Representação dos dados do cliente (nome, cpf, email);
+* Representação dos dados do cartão (número, cvv, validade, limite);
+* Listagem de compras realizadas (data, valor, estabelecimento, categoria);
+* Valor dos gastos agrupados por categoria;
+* Cálculo do valor da fatura do mês (opcional);
+* Busca de compras pelo valor ou estabelecimento (opcional).
+
+Você pode acessar o vídeo de explicação para a semana um através deste [link](https://www.alura.com.br/levelup/nubank-cdk/semana-01-clojure).
+E neste [link](https://trello.com/b/SPvpShJi/desafio-semana-1) você pode acessar o board do Trello.
+
+## ~~Semana 2~~
+Em breve.
+## ~~Semana 3~~
+Em breve.
+## ~~Semana 4~~
+Em breve.
+
+## Suporte
+
+Utilizaremos o **Discord** como ferramenta de comunicação, sendo que você pode (e deve) postar suas dúvidas e colaborar com as outras pessoas do seu time, para assim tirar o melhor proveito possível dessa semana de aprendizado.
+
+Este é [link](https://discord.gg/Y4Sxa7aV) para acesso ao servidor no Discord que utilizaremos.
 
 ## License
 
