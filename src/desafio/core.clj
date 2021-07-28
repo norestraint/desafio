@@ -1,4 +1,5 @@
-(ns desafio.core)
+(ns desafio.core
+  (:require desafio.pedidos))
 ; Necessario pra usar a biblioteca de tempo, tive que fazer uma mega "gambiarra" pra nao dar conflito entre funcoes do pacote e do clojure.
 (use '[java-time :exclude [range iterate format max min contains? zero?]])
 
@@ -18,7 +19,7 @@
    :numero   (gerar-numero)
    :limite   limite
    :validade (plus (local-date) (years 8))                  ; Nao sei porque ele nao reconhece as funcoes mas tá funcionando.
-   :cvv (gerar-numero 3)
+   :cvv      (gerar-numero 3)
    }
   )
 
@@ -26,13 +27,31 @@
   "Cria um hashmap com os dados do cliente."
   [nome cpf email limite]
   {
-   :nome   nome
-   :cpf    cpf
-   :email  email
-   :cartao (criar-cartao limite)
-   :pedidos []
+   :nome    nome
+   :cpf     cpf
+   :email   email
+   :cartao  (criar-cartao limite)
+   :pedidos (desafio.pedidos/fazer-pedidos 10)
    }
   )
 
+(defn total [pedidos]
+  (->> pedidos
+       (group-by :categoria)
+       )
+  )
+
 (def cliente (criar-cliente "Jorge Luis" 9233 "jorge@email" 1000))
-(println cliente)
+(def pedido (total (:pedidos cliente)))
+
+(defn total-do-pedido
+  [[chave pedido]]
+  {chave (reduce + (map :preco pedido))}
+  )
+
+(println pedido)
+
+(->> pedido
+     (map total-do-pedido)
+     (println)
+     )
