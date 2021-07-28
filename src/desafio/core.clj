@@ -1,7 +1,9 @@
 (ns desafio.core
-  (:require desafio.pedidos))
+  (:require [desafio.pedidos]
+            [desafio.tempos])
+  )
 ; Necessario pra usar a biblioteca de tempo, tive que fazer uma mega "gambiarra" pra nao dar conflito entre funcoes do pacote e do clojure.
-(use '[java-time :exclude [range iterate format max min contains? zero?]])
+;(use '[java-time :exclude [range iterate format max min contains? zero?]])
 
 ; Roubei daqui https://stackoverflow.com/questions/27053726/how-to-generate-random-password-with-the-fixed-length-in-clojure
 (defn gerar-numero
@@ -18,7 +20,7 @@
   {
    :numero   (gerar-numero)
    :limite   limite
-   :validade (plus (local-date) (years 8))                  ; Nao sei porque ele nao reconhece as funcoes mas tá funcionando.
+   :validade (desafio.tempos/data-de-validade-cartao)
    :cvv      (gerar-numero 3)
    }
   )
@@ -48,10 +50,9 @@
   [[chave pedido]]
   {chave (reduce + (map :preco pedido))}
   )
-
-(println pedido)
-
-(->> pedido
-     (map total-do-pedido)
-     (println)
-     )
+(defn total-por-categoria
+  [pedido]
+  (->> pedido
+       (map total-do-pedido)
+       )
+  )
