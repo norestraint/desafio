@@ -1,58 +1,74 @@
 (ns desafio.core
-  (:require [desafio.pedidos]
-            [desafio.tempos])
+  (:require [desafio.purchases]
+            [desafio.time-helper])
   )
-; Necessario pra usar a biblioteca de tempo, tive que fazer uma mega "gambiarra" pra nao dar conflito entre funcoes do pacote e do clojure.
-;(use '[java-time :exclude [range iterate format max min contains? zero?]])
 
 ; Roubei daqui https://stackoverflow.com/questions/27053726/how-to-generate-random-password-with-the-fixed-length-in-clojure
-(defn gerar-numero
-  ([] (gerar-numero 10))
+(defn generate-number
+  ([] (generate-number 10))
   ([n]
    (let [chars-between #(map char (range (int %1) (inc (int %2))))
          chars (concat (chars-between \0 \9))
-         numero (take n (repeatedly #(rand-nth chars)))]
-     (reduce str numero))))
+         number (take n (repeatedly #(rand-nth chars)))]
+     (reduce str number))))
 
-(defn criar-cartao
+(defn create-credit-card
   "Cria um hashmap com as informações do cartão do cliente."
-  [limite]
+  [limit]
   {
-   :numero   (gerar-numero)
-   :limite   limite
-   :validade (desafio.tempos/data-de-validade-cartao)
-   :cvv      (gerar-numero 3)
+   :number          (generate-number)
+   :limit           limit
+   :expiration-date (desafio.time-helper/data-de-validade-cartao)
+   :cvv             (generate-number 5)
    }
   )
 
-(defn criar-cliente
+(defn create-client
   "Cria um hashmap com os dados do cliente."
-  [nome cpf email limite]
+  [name cpf email limit]
   {
-   :nome    nome
-   :cpf     cpf
-   :email   email
-   :cartao  (criar-cartao limite)
-   :pedidos (desafio.pedidos/fazer-pedidos 10)
+   :name        name
+   :cpf         cpf
+   :email       email
+   :credit-card (create-credit-card limit)
+   :purchases   (desafio.purchases/construir-pedidos-completo 3)
    }
   )
 
-(defn total [pedidos]
-  (->> pedidos
+(def user (create-client "Jorge Luis" 9233 "jorge@email" 1000))
+(def purchase (:purchases user))
+
+(defn total [purchases]
+  (->> purchases
+       (group-by :category)
+       )
+  )
+
+
+(defn break-purchases
+  [[_ purchase]]
+  purchase
+  )
+
+(defn sum-of-purchases
+  [purchases]
+  (println (key purchase))
+  (->> purchases
+       (val)
+       (map :preco)
+       (reduce +)
+       (println))
+  ;{key (reduce + (map :price purchase))}
+  )
+
+(defn total-by-category
+  [purchase]
+  (->> purchase
+       (map break-purchases)
        (group-by :categoria)
+       (map sum-of-purchases)
        )
   )
 
-(def cliente (criar-cliente "Jorge Luis" 9233 "jorge@email" 1000))
-(def pedido (total (:pedidos cliente)))
-
-(defn total-do-pedido
-  [[chave pedido]]
-  {chave (reduce + (map :preco pedido))}
-  )
-(defn total-por-categoria
-  [pedido]
-  (->> pedido
-       (map total-do-pedido)
-       )
-  )
+(println purchase)
+(total-by-category purchase)
