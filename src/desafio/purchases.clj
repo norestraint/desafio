@@ -4,7 +4,7 @@
 ; TODO ideas
 ; transformar a funcao fazer-desafio.purchases para receber uma lista com as categorias dos desafio.purchases?
 
-(def comerciantes [
+(def merchant-list [
                    ["Nerdstore", "Vestuario"]
                    ["Renner", "Vestuario"]
                    ["Burguer King", "Alimentacao"]
@@ -21,85 +21,42 @@
                    ["99taxi", "Locomocao"]
                    ["Cabify", "Locomocao"]
                    ])
-(defn construir-pedido
+(defn build-purchase
   (
    []
-   (construir-pedido (rand-nth comerciantes))
+   (build-purchase (rand-nth merchant-list))
    )
   (
-   [[comerciante, categoria]]
+   [[merchant, category]]
    {
-    :comerciante comerciante
-    :categoria   categoria
-    :preco       (rand-int 500)
-    :data        (desafio.time-helper/data-aleatoria)
+    :merchant merchant
+    :category   category
+    :price       (rand-int 500)
+    :date        (desafio.time-helper/random-date)
     }
    ))
 
-(defn construir-pedidos
+(defn make-purchases
   (
    []
-   (construir-pedidos (map inc (range 10)))
+   (make-purchases (map inc (range 10)))
    )
   (
    [numeros]
    (if (= 1 (count numeros))
-     {(nth numeros 0) (construir-pedido)}
-     (conj {(nth numeros 0) (construir-pedido)} (construir-pedidos (rest numeros)))
+     {(nth numeros 0) (build-purchase)}
+     (conj {(nth numeros 0) (build-purchase)} (make-purchases (rest numeros)))
      )
    )
   )
 
-(defn construir-pedidos-completo
+(defn build-purchase-list
   (
    []
-   (construir-pedidos (map inc (range 10)))
+   (make-purchases (map inc (range 10)))
    )
   (
    [n]
-   (construir-pedidos (map inc (range n)))
+   (make-purchases (map inc (range n)))
    )
   )
-(println (construir-pedidos-completo 5))
-(def pedidos {
-              {
-               :date        (desafio.time-helper/data-aleatoria)
-               :preco       100
-               :comerciante "Nerdstore"
-               :categoria   "Vestuario"
-               }
-              {
-               :date        (desafio.time-helper/data-aleatoria)
-               :preco       59
-               :comerciante "MacDonalds"
-               :categoria   "Comida"
-               }
-              {
-               :date        (desafio.time-helper/data-aleatoria)
-               :preco       35
-               :comerciante "Panvel"
-               :categoria   "Medicamento"
-               }
-              {
-               :date        (desafio.time-helper/data-aleatoria)
-               :preco       150
-               :comerciante "Hering"
-               :categoria   "Vestuario"
-               }
-              })
-
-(defn fazer-pedidos
-  (
-   []
-   (fazer-pedidos (rand-int (inc (count pedidos))))
-   )
-  (
-   [n]
-   (->> #(get pedidos (rand-int (count pedidos)))
-        (repeatedly 1000)
-        (take n)
-        )
-   )
-  )
-
-(println (fazer-pedidos 10))

@@ -18,7 +18,7 @@
   {
    :number          (generate-number)
    :limit           limit
-   :expiration-date (desafio.time-helper/data-de-validade-cartao)
+   :expiration-date (desafio.time-helper/credit-card-expiration-date)
    :cvv             (generate-number 3)
    }
   )
@@ -31,17 +31,14 @@
    :cpf         cpf
    :email       email
    :credit-card (create-credit-card limit)
-   :purchases   (desafio.purchases/construir-pedidos-completo 9)
+   :purchases   (desafio.purchases/build-purchase-list 9)
    }
   )
-
-(def user (create-client "Jorge Luis" 9233 "jorge@email" 1000))
-(def purchase (:purchases user))
 
 (defn sum-of-purchases
   [purchases]
   (->> purchases
-       (map :preco)
+       (map :price)
        (reduce +)
        ))
 
@@ -56,11 +53,8 @@
   [purchase]
   (->> purchase
        (vals)
-       (group-by :categoria)
+       (group-by :category)
        (map make-hashmap)
        (into {})
        )
   )
-
-(println "Purchase ->" purchase)
-(println "Result ->" (total-by-category purchase))
