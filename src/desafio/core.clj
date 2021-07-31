@@ -31,7 +31,7 @@
    :cpf         cpf
    :email       email
    :credit-card (create-credit-card limit)
-   :purchases   (desafio.purchases/build-purchase-list 9)
+   :purchases   (desafio.purchases/build-purchase-list 20)
    }
   )
 
@@ -58,3 +58,37 @@
        (into {})
        )
   )
+
+(defn search-purchase-by-value
+  [purchases value]
+  (let [list
+        (->> purchases
+             (vals)
+             (group-by :price)
+             )
+        ]
+    (get list value "No purchases found for this amount.")
+    )
+  )
+
+(defn search-purchase-by-merchant
+  [purchases value]
+  (let [list
+        (->> purchases
+             (vals)
+             (group-by :merchant)
+             )
+        ]
+    (get list value "No purchases found for this merchant.")
+    )
+  )
+
+(defn search-purchase
+  [purchases search-arg]
+  (case (str (type search-arg))
+    "class java.lang.Long" (search-purchase-by-value purchases search-arg)
+    "class java.lang.String" (search-purchase-by-merchant purchases search-arg)
+    "Error: Wrong type of argument."
+    )
+  )
+
