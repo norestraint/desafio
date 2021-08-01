@@ -1,6 +1,15 @@
 (ns desafio.core
   (:require [desafio.purchases]
             [desafio.time-helper])
+  (:use clojure.pprint)
+  )
+
+(comment
+  TODO ideas
+  - change the total-by-category function to also return the number of purchases of that category
+  - create or find a pretty-printer for the search function
+  - the search function can probably be refactored to use a single thread
+  - separate the files so the client and credit-card logic are separated
   )
 
 ; Roubei daqui https://stackoverflow.com/questions/27053726/how-to-generate-random-password-with-the-fixed-length-in-clojure
@@ -45,7 +54,9 @@
 (defn make-hashmap
   [[category purchases]]
   {
-   category (sum-of-purchases purchases)
+   :category category
+   :number-of-purchases (count purchases)
+   :sum (sum-of-purchases purchases)
    }
   )
 
@@ -55,7 +66,7 @@
        (vals)
        (group-by :category)
        (map make-hashmap)
-       (into {})
+       ;(into {})
        )
   )
 
@@ -92,3 +103,5 @@
     )
   )
 
+;(def user (create-client "Gabriela Lima" 12345678910 "gabriela.lima@nubank.com.br" 2500))
+;(def purchases-list (:purchases user))
