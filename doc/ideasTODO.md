@@ -1,6 +1,12 @@
 #A list of ideas to implement or improve on the project
 
-- [ ] Use `atoms` to define a multi-client logic and implement a mutable pucheses list.
+- [ ] Use `schemas` to implement the client, credit card and purchases logic.
+
+- [ ] Use `s/constrained` to validate the data of the schemas.
+
+- [ ] Use `defmulti` on the function that searches a purchase by value or merchant name. 
+
+- [ ] Use `atoms` or `refs` to define a multi-client logic and implement a mutable pucheses list.
 
 - [ ] Use function declaration as variables inside a `let` statement as follow:
 ```
