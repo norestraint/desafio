@@ -6,7 +6,7 @@
   (plus (local-date) (years 8))
   )
 
-(defn random-date
+(defn random-datetime
   []
-  (plus (local-date) (days (rand-int 365)))
+  (plus (local-date-time) (days (rand-int 365)))
   )
