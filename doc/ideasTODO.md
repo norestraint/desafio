@@ -1,6 +1,23 @@
 #A list of ideas to implement or improve on the project
 
-- [ ] Use `schemas` to implement the client, credit card and purchases logic.
+
+- [ ] Change the `total-by-category` function to return a different hashmap, as follows:
+
+```
+{
+    :category1 { :number-of-purchases x
+                 :total               y }
+    :category2 { :number-of-purchases x
+                 :total               y }
+    ...
+}
+```
+
+- [ ] Change the hashmap of purchases to contains a uuid as the identifier of each purchase.
+
+- [x] Reestructure the project so the models stay in one folder and the business logic in another one(`models.clj` and `logic.clj`).
+
+- [x] Use `schemas` to implement the client, credit card and purchases logic.
 
 - [ ] Use `s/constrained` to validate the data of the schemas.
 
@@ -8,7 +25,7 @@
 
 - [ ] Use `atoms` or `refs` to define a multi-client logic and implement a mutable pucheses list.
 
-- [ ] Use function declaration as variables inside a `let` statement as follow:
+- [x] Use function declaration as variables inside a `let` statement as follow:
 ```
 (defn chega-em
   [hospital departamento pessoa]

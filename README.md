@@ -8,18 +8,29 @@ O plano de estudos é dividido em quatro semanas e em cada uma delas será propo
 
 Na primeira semana do desafio de Onboarding da Alura temos como objetivo criar um código em Clojure que simula o cartão de crédito de um cliente Nubank. O código precisa ser capaz de:
 
-* Representação dos dados do cliente (nome, cpf, email);
-* Representação dos dados do cartão (número, cvv, validade, limite);
-* Listagem de compras realizadas (data, valor, estabelecimento, categoria);
-* Valor dos gastos agrupados por categoria;
-* Cálculo do valor da fatura do mês (opcional);
-* Busca de compras pelo valor ou estabelecimento (opcional).
+- [x] Representação dos dados do cliente (nome, cpf, email);
+- [x] Representação dos dados do cartão (número, cvv, validade, limite);
+- [x] Listagem de compras realizadas (data, valor, estabelecimento, categoria);
+- [x] Valor dos gastos agrupados por categoria;
+- [ ] Cálculo do valor da fatura do mês (opcional);
+- [x] Busca de compras pelo valor ou estabelecimento (opcional).
 
-Você pode acessar o vídeo de explicação para a semana um através deste [link](https://www.alura.com.br/levelup/nubank-cdk/semana-01-clojure).
-E neste [link](https://trello.com/b/SPvpShJi/desafio-semana-1) você pode acessar o board do Trello.
+Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/levelup/nubank-cdk/semana-01-clojure) e o [board do Trello](https://trello.com/b/SPvpShJi/desafio-semana-1) sobre o desafio dessa semana.
 
-## ~~Semana 2~~
-Em breve.
+Dupla dessa semana: [Gabriela Velho](https://github.com/GabrielaVelho)
+## Semana 2
+Na segunda semana o tema é *testes automatizados*. Temos que escrever os testes automatizados em clojure do código que simula o cartão de crédito de um cliente Nubank, desenvolvido na semana 01.
+
+Precisamos fazer o seguinte:
+
+- [ ] Teste da função que adiciona uma compra na lista de compras realizadas.
+- [ ] Teste da função que lista as compras realizadas.
+- [ ] Teste da função que realiza o cálculo dos gastos agrupados por categoria.
+
+Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/levelup/nubank-cdk/semana-02-testes) e o [board do Trello](https://trello.com/b/DZy7g8g4/desafio-semana-2) sobre o desafio dessa semana.
+
+Dupla dessa semana: [Malcom Soares](https://github.com/Risadeiro/)
+
 ## ~~Semana 3~~
 Em breve.
 ## ~~Semana 4~~
