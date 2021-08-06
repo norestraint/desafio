@@ -36,10 +36,10 @@
 
 (def PosInt (s/pred pos-int?))
 
-(def CreditCard {:number          PosInt
+(def CreditCard {:number          s/Str
                  :limit           PosInt
                  :expiration-date java.time.LocalDate
-                 :cvv             PosInt})
+                 :cvv             s/Str})
 
 (def Purchase {:merchant s/Str
                :category s/Str
@@ -108,6 +108,4 @@
    :cpf         cpf
    :email       email
    :credit-card (create-credit-card limit)
-   :purchases   (create-random-purchase-list)})
-
-(pprint (create-purchase "Apple" "Eletrodomesticos" 1200 "92/10/2021"))
+   :purchases   nil})
