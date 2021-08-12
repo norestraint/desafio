@@ -23,7 +23,7 @@ Na segunda semana o tema é *testes automatizados*. Temos que escrever os testes
 
 Precisamos fazer o seguinte:
 
-- [ ] Teste da função que adiciona uma compra na lista de compras realizadas.
+- [x] Teste da função que adiciona uma compra na lista de compras realizadas.
 - [ ] Teste da função que lista as compras realizadas.
 - [ ] Teste da função que realiza o cálculo dos gastos agrupados por categoria.
 
@@ -31,8 +31,23 @@ Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/le
 
 Dupla dessa semana: [Malcom Soares](https://github.com/Risadeiro/)
 
-## ~~Semana 3~~
-Em breve.
+## Semana 3
+Na terceira semana o tema é *Datomic*. Temos que dar continuidade ao código escrito na semana anterior, o alterando para que as informações sejam armazenadas no banco de dados Datomic.
+
+Precisamos fazer o seguinte:
+
+- [ ] Se conectar à uma instância local do banco de dados Datomic.
+- [ ] Armazenar as informações do cliente e de seu cartão.
+- [ ] Armazenar as informações das compras realizadas.
+- [ ] Recuperar e listar as compras realizadas.
+- [ ] Função que retorne um relatório com o cliente que realizou o maior número de compras(opcional).
+- [ ] Função que retorne um relatório com o cliente que realizou a compra de maior valor(opcional).
+- [ ] Função que retorne um relatório com o clientes que nunca realizaram compras(opcional).
+
+Aqui estão os links para o [vídeo de explicação](https://cursos.alura.com.br/corp/nos-codamos-i-terceira-semana-22249-p190887) e o [board do Trello](https://trello.com/b/53ur3SRy/semana-3) sobre o desafio dessa semana.
+
+Dupla dessa semana: [Allison Sampaio](https://github.com/allisonsampaio)
+
 ## ~~Semana 4~~
 Em breve.
 
