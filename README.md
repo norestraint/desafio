@@ -44,7 +44,7 @@ Precisamos fazer o seguinte:
 - [ ] Função que retorne um relatório com o cliente que realizou a compra de maior valor(opcional).
 - [ ] Função que retorne um relatório com o clientes que nunca realizaram compras(opcional).
 
-Aqui estão os links para o [vídeo de explicação](https://cursos.alura.com.br/corp/nos-codamos-i-terceira-semana-22249-p190887) e o [board do Trello](https://trello.com/b/53ur3SRy/semana-3) sobre o desafio dessa semana.
+Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/levelup/nubank-cdk/semana-03-datomic) e o [board do Trello](https://trello.com/b/53ur3SRy/semana-3) sobre o desafio dessa semana.
 
 Dupla dessa semana: [Allison Sampaio](https://github.com/allisonsampaio)
 
