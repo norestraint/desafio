@@ -22,7 +22,7 @@
               :db/cardinality :db.cardinality/one
               :db/unique      :db.unique/identity
               :db/doc         "Client's unique identifier inside the database"}
-             {:db/ident       :client/nome
+             {:db/ident       :client/name
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
               :db/doc         "Client's name."}
@@ -44,6 +44,11 @@
               :db/doc         "List of purchases of the client."}
 
              ;Credit card schema
+             {:db/ident       :credit-card/id
+              :db/valueType   :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/unique      :db.unique/identity
+              :db/doc         "Credit card unique identifier."}
              {:db/ident       :credit-card/number
               :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one
@@ -57,7 +62,7 @@
               :db/cardinality :db.cardinality/one
               :db/doc         "Credit card limit."}
              {:db/ident       :credit-card/expiration-date
-              :db/valueType   :db.type/instant
+              :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
               :db/doc         "Credit card expiration date."}
 
