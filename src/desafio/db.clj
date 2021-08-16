@@ -84,8 +84,8 @@
               :db/valueType   :db.type/bigdec
               :db/cardinality :db.cardinality/one
               :db/doc         "Cost of the purchase."}
-             {:db/ident       :purchase/instant
-              :db/valueType   :db.type/instant
+             {:db/ident       :purchase/datetime
+              :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
               :db/doc         "Moment of the purchase."}])
 
