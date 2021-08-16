@@ -1,6 +1,6 @@
 (ns desafio.db
   (:require [datomic.api :as d]
-            [desafio.models :as model]
+            [desafio.models :as models]
             [schema.core :as s]
             [desafio.models :as model]
             [clojure.walk :as walk])
@@ -92,3 +92,62 @@
 (defn load-schema!
   [conn]
   (d/transact conn schema))
+
+
+(defn dissoc-db-id [data]
+  (if (map? data)
+    (dissoc data :db/id)
+    data))
+
+(defn remove-all-ids [data-entries]
+  (walk/prewalk dissoc-db-id data-entries))
+
+(s/defn get-client-by-uuid [db id :- java.util.UUID]
+  (let [query '[:find (pull ?client [* {:client/credit-card [*]} {:client/purchases [*]}]) .
+                :in $ ?id
+                :where [?client :client/id ?id]]
+        result (d/q query db id)
+        clients (remove-all-ids result)]
+    clients))
+
+(defn get-all-clients [db]
+  (let [query '[:find [(pull ?client [* {:client/credit-card [*]} {:client/purchases [*]}]) ...]
+                :where [?client :client/id ?id]]
+        result (d/q query db)
+        clients (remove-all-ids result)]
+    clients))
+
+(defn add-credit-card!
+  [conn clients credit-card]
+  (let [transacao (reduce (fn [db-adds client]
+                            (conj db-adds [:db/add
+                                           [:client/id (:client/id client)]
+                                           :client/credit-card
+                                           [:credit-card/id (:credit-card/id credit-card)]]))
+                          []
+                          clients)]
+    (d/transact conn transacao)))
+
+(s/defn make-purchase!
+  [conn
+   clients :- [model/Client]
+   purchase :- model/Purchase]
+  (let [transaction (reduce (fn [db-adds client]
+                              (conj db-adds [:db/add
+                                             [:client/id (:client/id client)]
+                                             :client/purchases
+                                             [:purchase/id (:purchase/id purchase)]]))
+                            []
+                            clients)]
+    (d/transact conn [purchase])
+    (d/transact conn transaction)))
+
+(s/defn db-add-client!
+  [conn
+   client :- models/Client
+   credit-card :- models/CreditCard]
+  (d/transact conn [client])
+  (d/transact conn [credit-card])
+  (add-credit-card! conn [client] credit-card)
+  )
+
