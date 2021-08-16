@@ -3,10 +3,14 @@
 
 (defn credit-card-expiration-date
   []
-  (plus (local-date) (years 8))
+  ;(plus (local-date) (years 8))
+  ;(java.time.Instant/now)
+  "01/01/2021"
   )
 
 (defn random-datetime
   []
-  (plus (local-date-time) (days (rand-int 365)))
+  ;(plus (local-date-time) (days (rand-int 365)))
+  ;(java.time.Instant/now)
+  "01/01/2021"
   )
