@@ -3,8 +3,10 @@
   (:require [schema.core :as s]
             [desafio.time-helper :as t]))
 
+(defn uuid [] (java.util.UUID/randomUUID))
+
 (defn generate-number
-  ([] (generate-number 10))
+  ([] (generate-number 8))
   ([n]
    (let [chars-between #(map char (range (int %1) (inc (int %2))))
          chars (concat (chars-between \0 \9))
@@ -36,23 +38,26 @@
 
 (def PosInt (s/pred pos-int?))
 
-(def CreditCard {:number          s/Str
-                 :limit           PosInt
-                 :expiration-date java.time.LocalDate
-                 :cvv             s/Str})
+(def CreditCard {:credit-card/id              java.util.UUID
+                 :credit-card/number          PosInt
+                 :credit-card/limit           PosInt
+                 :credit-card/expiration-date s/Str
+                 :credit-card/cvv             PosInt})
 
-(def Purchase {:merchant s/Str
-               :category s/Str
-               :price    PosInt
-               :date     java.time.LocalDateTime})
+(def Purchase {:purchase/id       java.util.UUID
+               :purchase/merchant s/Str
+               :purchase/category s/Str
+               :purchase/price    BigDecimal
+               :purchase/datetime  s/Str})
 
-(def PurchaseList [Purchase])
+(def PurchaseList {java.util.UUID Purchase})
 
-(def Client {:name        s/Str
-             :cpf         PosInt
-             :email       s/Str
-             :credit-card CreditCard
-             :purchases   PurchaseList})
+(s/def Client {:client/id                           java.util.UUID
+               :client/name                         s/Str
+               :client/cpf                          s/Str
+               :client/email                        s/Str
+               (s/optional-key :client/credit-card) CreditCard
+               (s/optional-key :client/purchases)   PurchaseList})
 
 (s/defn create-purchase :- Purchase
   (
@@ -60,52 +65,47 @@
    (let [merchant-category (get-random-merchant)
          merchant (:merchant merchant-category)
          category (:category merchant-category)
-         price (rand-int 500)
+         price 100M
          date (t/random-datetime)]
      (create-purchase merchant category price date))
    )
   (
    [merchant :- s/Str
     category :- s/Str
-    price :- PosInt
-    date :- java.time.LocalDateTime]
+    price :- BigDecimal
+    date :- s/Str]
    {
-    :merchant merchant
-    :category category
-    :price    price
-    :date     date
+    :purchase/id       (uuid)
+    :purchase/merchant merchant
+    :purchase/category category
+    :purchase/price    price
+    :purchase/datetime  date
     }
    ))
 
 (s/defn create-random-purchase-list :- PurchaseList
-  (
-   []
-   (create-random-purchase-list 10)
-   )
-  (
-   [n]
+  ([]
+   (create-random-purchase-list 10))
+  ([n]
    (if (= n 1)
-     {(generate-number 8) (create-purchase)}
-     (conj {(generate-number 8) (create-purchase)} (create-random-purchase-list (dec n)))
-     )
-   )
-  )
+     {(uuid) (create-purchase)}
+     (conj {(uuid) (create-purchase)} (create-random-purchase-list (dec n)))
+     )))
 
 (s/defn create-credit-card :- CreditCard
   [limit :- PosInt]
-  {:number          (generate-number)
-   :limit           limit
-   :expiration-date (t/credit-card-expiration-date)
-   :cvv             (generate-number 3)})
+  {:credit-card/id              (uuid)
+   :credit-card/number          (Integer. (generate-number))
+   :credit-card/limit           limit
+   :credit-card/expiration-date (t/credit-card-expiration-date)
+   :credit-card/cvv             (Integer. (generate-number 3))})
 
 (s/defn create-client :- Client
   "Creates a client."
   [name :- s/Str
-   cpf :- PosInt
-   email :- s/Str
-   limit :- PosInt]
-  {:name        name
-   :cpf         cpf
-   :email       email
-   :credit-card (create-credit-card limit)
-   :purchases   nil})
+   cpf :- s/Str
+   email :- s/Str]
+  {:client/id    (uuid)
+   :client/name  name
+   :client/cpf   cpf
+   :client/email email})
