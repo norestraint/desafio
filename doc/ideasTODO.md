@@ -1,14 +1,16 @@
 #A list of ideas to implement or improve on the project
 
+- [ ] Use Nubank's [Clojure style guide](https://github.com/nubank/clojure-style-guide) and [best practices](https://github.com/nubank/playbooks/blob/master/docs/clojure/code-style.md).
+
 - [ ] Add query rules for the database functions(possibly erasing the Datomic id when returning a schema?).
 
-- [ ] Change the type of the value `:price` to BigDecimal.
+- [x] Change the type of the value `:price` to BigDecimal.
 
 - [ ] Use a backward query to find all the purchases in a category.
 
 - [ ] Use a forward query to find all the purchases of a client.
 
-- [ ] Change the hashmap of purchases to contains a uuid as the identifier of each purchase.
+- [x] Change the hashmap of purchases to contains a uuid as the identifier of each purchase.
   
 - [ ] Change the `total-by-category` function to return a different hashmap, as follows:
 
@@ -29,8 +31,6 @@
 - [ ] Use `s/constrained` to validate the data of the schemas.
 
 - [ ] Use `defmulti` on the function that searches a purchase by value or merchant name. 
-
-- [x] Use `atoms` or `refs` to define a multi-client logic and implement a mutable pucheses list.
 
 - [x] Use function declaration as variables inside a `let` statement as follow:
 ```
