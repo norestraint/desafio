@@ -95,6 +95,8 @@
 
 
 (defn dissoc-db-id [data]
+  ;(println "---------------------- DATA ---------------------------")
+  ; (pprint data)
   (if (map? data)
     (dissoc data :db/id)
     data))
@@ -102,7 +104,8 @@
 (defn remove-all-ids [data-entries]
   (walk/prewalk dissoc-db-id data-entries))
 
-(s/defn get-client-by-uuid [db id :- java.util.UUID]
+(s/defn get-client-by-uuid :- (s/maybe models/Client)
+  [db id :- java.util.UUID]
   (let [query '[:find (pull ?client [* {:client/credit-card [*]} {:client/purchases [*]}]) .
                 :in $ ?id
                 :where [?client :client/id ?id]]
@@ -114,7 +117,7 @@
   (let [query '[:find [(pull ?client [* {:client/credit-card [*]} {:client/purchases [*]}]) ...]
                 :where [?client :client/id ?id]]
         result (d/q query db)
-        clients (remove-all-ids result)]
+        clients (map remove-all-ids result)]
     clients))
 
 (defn add-credit-card!
