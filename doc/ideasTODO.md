@@ -1,5 +1,11 @@
 #A list of ideas to implement or improve on the project
 
+- [ ] The functions of search by value and by merchant name are awfully similar, condense them.
+
+- [ ] This code `(nth (str/split date-period #"/") 0)` shows up a lot on the logic file, refactor it to a function? 
+
+- [ ] Change the attributes `:purchase/datetime` and `:credit-card/expiration-date` to type `Instant`.
+
 - [ ] Use Nubank's [Clojure style guide](https://github.com/nubank/clojure-style-guide) and [best practices](https://github.com/nubank/playbooks/blob/master/docs/clojure/code-style.md).
 
 - [ ] Add query rules for the database functions(possibly erasing the Datomic id when returning a schema?).

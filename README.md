@@ -4,7 +4,7 @@ Para preparar os #nuvinhos para as equipes o Nubank fez uma parceria com a [Alur
 
 O plano de estudos é dividido em quatro semanas e em cada uma delas será proposto também um desafio que testa os conceitos passados nos cursos. Esses desafios semanais serão feitos em dupla e armazenados nesse repositório.
 
-## Semana 1
+## Semana 1 - 26/07 a 30/07
 
 Na primeira semana do desafio de Onboarding da Alura temos como objetivo criar um código em Clojure que simula o cartão de crédito de um cliente Nubank. O código precisa ser capaz de:
 
@@ -12,13 +12,13 @@ Na primeira semana do desafio de Onboarding da Alura temos como objetivo criar u
 - [x] Representação dos dados do cartão (número, cvv, validade, limite);
 - [x] Listagem de compras realizadas (data, valor, estabelecimento, categoria);
 - [x] Valor dos gastos agrupados por categoria;
-- [ ] Cálculo do valor da fatura do mês (opcional);
+- [x] Cálculo do valor da fatura do mês (opcional);
 - [x] Busca de compras pelo valor ou estabelecimento (opcional).
 
 Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/levelup/nubank-cdk/semana-01-clojure) e o [board do Trello](https://trello.com/b/SPvpShJi/desafio-semana-1) sobre o desafio dessa semana.
 
 Dupla dessa semana: [Gabriela Velho](https://github.com/GabrielaVelho)
-## Semana 2
+## Semana 2 - 02/08 a 06/08
 Na segunda semana o tema é *testes automatizados*. Temos que escrever os testes automatizados em clojure do código que simula o cartão de crédito de um cliente Nubank, desenvolvido na semana 01.
 
 Precisamos fazer o seguinte:
@@ -31,15 +31,15 @@ Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/le
 
 Dupla dessa semana: [Malcom Soares](https://github.com/Risadeiro/)
 
-## Semana 3
+## Semana 3 - 09/08 a 13/08
 Na terceira semana o tema é *Datomic*. Temos que dar continuidade ao código escrito na semana anterior, o alterando para que as informações sejam armazenadas no banco de dados Datomic.
 
 Precisamos fazer o seguinte:
 
-- [ ] Se conectar à uma instância local do banco de dados Datomic.
-- [ ] Armazenar as informações do cliente e de seu cartão.
-- [ ] Armazenar as informações das compras realizadas.
-- [ ] Recuperar e listar as compras realizadas.
+- [x] Se conectar à uma instância local do banco de dados Datomic.
+- [x] Armazenar as informações do cliente e de seu cartão.
+- [x] Armazenar as informações das compras realizadas.
+- [x] Recuperar e listar as compras realizadas.
 - [ ] Função que retorne um relatório com o cliente que realizou o maior número de compras(opcional).
 - [ ] Função que retorne um relatório com o cliente que realizou a compra de maior valor(opcional).
 - [ ] Função que retorne um relatório com o clientes que nunca realizaram compras(opcional).
@@ -48,8 +48,20 @@ Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/le
 
 Dupla dessa semana: [Allison Sampaio](https://github.com/allisonsampaio)
 
-## ~~Semana 4~~
-Em breve.
+## Semana 4 - 16/08  a 20/08
+O tema da última semana do bootcamp é *Kafka*. Temos que modelar uma arquitetura baseada em mensageria com Kafka que poderia ser utilizada como solução para o processamento de uma compra com cartão de crédito.
+
+A solução precisa levar em consideração os seguintes aspectos:
+
+- [ ] Serviços que precisam ser executados;
+- [ ] Fluxo de execução;
+- [ ] Performance, escalabilidade, disponibilidade e confiabilidade.
+
+Podemos utilizar alguma ferramenta de diagramas para modelar sua solução, por exemplo o [Draw.io](https://app.diagrams.net)
+
+Aqui estão os links para o [vídeo de explicação](https://www.alura.com.br/levelup/nubank-cdk/semana-04-kafka) e o [board do Trello](https://trello.com/b/IFwKsHy6/semana-4) sobre o desafio dessa semana.
+
+Dupla dessa semana: [Daniel Oliveira](https://github.com/danielNorbitt/)
 
 ## Suporte
 
