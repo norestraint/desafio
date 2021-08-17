@@ -50,14 +50,12 @@
                :purchase/price    BigDecimal
                :purchase/datetime  s/Str})
 
-(def PurchaseList {java.util.UUID Purchase})
-
 (s/def Client {:client/id                           java.util.UUID
                :client/name                         s/Str
                :client/cpf                          s/Str
                :client/email                        s/Str
                (s/optional-key :client/credit-card) CreditCard
-               (s/optional-key :client/purchases)   PurchaseList})
+               (s/optional-key :client/purchases)   [Purchase]})
 
 (s/defn create-purchase :- Purchase
   (
@@ -83,7 +81,7 @@
     }
    ))
 
-(s/defn create-random-purchase-list :- PurchaseList
+(s/defn create-random-purchase-list
   ([]
    (create-random-purchase-list 10))
   ([n]
